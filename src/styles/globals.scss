@@ -1,0 +1,167 @@
+/* src/style/globals.scss */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- BG tokens (one solid source of truth) ---------- */
+:root {
+  --page-bg-solid: #000000; /* solid black */
+  --page-bg: #000000;       /* keep solid to avoid alpha seams */
+}
+
+/* ---------- Base ---------- */
+html,
+body {
+  height: 100%;
+  min-width: 0;                 /* prevent children from forcing width */
+  overflow-x: hidden;           /* hard-stop sideways scroll */
+  scroll-behavior: auto;        /* GSAP-friendly */
+  background: var(--page-bg-solid);
+}
+
+/* avoid touchpad side-swipe creating horiz scroll */
+html { overscroll-behavior-x: none; }
+
+@font-face {
+  font-family: "Google Sans";
+  src: url("/fonts/GoogleSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  @apply text-main;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tailwind utility hook */
+.bg-bgdark { background-color: var(--page-bg) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  html, body { scroll-behavior: auto; }
+}
+
+/* ---------- Navbar overlay ---------- */
+.outer-menu {
+  position: relative;
+
+  .hamburger {
+    position: relative;
+    width: 1.5rem; height: 1.5rem;
+    cursor: pointer; backface-visibility: hidden;
+    z-index: 50;
+
+    > div {
+      width: 100%; height: 2px; background: white;
+      position: absolute; top: 50%; transform: translateY(-50%);
+      transition: all 0.4s ease;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+
+      &:before, &:after {
+        content: ""; position: absolute; left: 0;
+        width: 100%; height: 2px; background: inherit;
+        transition: all 0.4s ease;
+      }
+      &:before { top: -8px; }
+      &:after  { top: 8px;  }
+    }
+  }
+
+  .menu {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(8px);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 999;
+
+    ul {
+      list-style: none; display: flex; flex-direction: column; gap: 1.8rem; text-align: center;
+
+      li a {
+        font-size: 1.7rem; font-weight: 600;
+        background: linear-gradient(90deg, #ffffff 0%, #6dd5ed 50%, #2193b0 100%);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: background-position 0.4s ease;
+        &:hover { background-position: 100% 0; }
+      }
+    }
+  }
+}
+.outer-menu.menu-visible .menu { opacity: 1; visibility: visible; pointer-events: auto; }
+
+/* ---------- Smooth wrapper/content (solid + clamped) ---------- */
+#root,
+#smooth-wrapper,
+#smooth-content {
+  background: var(--page-bg-solid);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;  /* <- important */
+}
+
+#smooth-wrapper {
+  height: 100%;
+  overflow: visible;   /* allow ScrollTrigger pin spacing */
+  position: relative;
+}
+
+#smooth-content {
+  will-change: transform;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Pin spacer + anti-hairline ---------- */
+.pin-spacer,
+.gsap-pin-spacer {
+  background: var(--page-bg-solid) !important;
+}
+
+section,
+.pin-spacer,
+.gsap-pin-spacer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Avoid global z-index on sections (can cause stacking with pin) */
+section { position: relative; }
+
+/* Ensure the horizontal gallery is solid while pinned */
+#projects { background: var(--page-bg-solid) !important; }
+
+/* ---------- Utilities ---------- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Mobile horizontal snap for Projects */
+@media (max-width: 640px) {
+  #projects .h-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  #projects a { scroll-snap-align: start; }
+}
+
+/* Resume/LIA helpers */
+.lia-intro { transform: none !important; }
+
+@layer utilities {
+  .lia-intro .lia-words {
+    @apply uppercase leading-[80%] tracking-tighter font-bold;
+    margin-left: 0 !important;
+    font-size: clamp(3rem, 18vw, 12rem) !important;
+    letter-spacing: -0.035em;
+  }
+}
+
+/* Optional: images never push layout wider */
+img, video, canvas { max-width: 100%; height: auto; display: block; }
