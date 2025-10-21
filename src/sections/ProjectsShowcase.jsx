@@ -35,7 +35,7 @@ const projects = [
       "Deployed REST APIs to Azure App Service via GitHub Actions; hosted an API on an Azure VM with NSG & IAM; wired up Application Insights and secured secrets with Key Vault.",
     gradient: ["#0f2027", "#2c5364"], // deep teal/blue
     tech: ["Azure App Service", "Azure VM", "GitHub Actions", "App Insights", "Key Vault", "NSG", "IAM"],
-    url: "https://github.com/RMSSanali/cua24s_gamestore.git"
+    url: "https://github.com/RMSSanali/cua24s_gamestore.git",
   },
   {
     name: "Weather App",
@@ -43,7 +43,7 @@ const projects = [
     description: "Responsive weather app with live updates using OpenWeather API.",
     gradient: ["#56CCF2", "#2F80ED"],
     tech: ["React", "API", "CSS"],
-    url: "https://github.com/RMSSanali/WeatherApp",
+    url: "https://github.com/RMSSanali/weather-forecast-app.git",
   },
   {
     name: "Community Blog Web API",
