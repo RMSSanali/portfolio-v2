@@ -20,8 +20,8 @@ const items = [
     status: "Wrapping up",
     updated: "Oct 13, 2025",
     links: {
-      repo: "https://github.com/RMSSanali/portfolio",   // <- update if different
-      demo: "https://your-site.com"                     // <- update if you have one
+      repo: "https://github.com/RMSSanali/portfolio-v2.git",   // <- update if different
+      demo: "https://portfolio-v2-ol2u.vercel.app/"                     // <- update if you have one
     },
     goals: ["Lighthouse 95+", "A11y pass", "Stable project carousel"],
     next: ["MDX blog scaffold", "Dark-mode fine tune", "RSS seed"],
