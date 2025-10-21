@@ -6,8 +6,8 @@ Includes projects showcase, LIA intro, tech stack physics, dedicated **Resume pa
 ![screenshot](public/og-image.png)
 
 ## 🔗 Live
-- **Demo:** https://your-domain.com  
-- **Resume page:** https://your-domain.com/resume
+- **Demo:** https://portfolio-v2-ol2u.vercel.app
+- **Resume page:** https://portfolio-v2-ol2u.vercel.app/resume
 
 ---
 
