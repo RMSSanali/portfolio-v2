@@ -46,11 +46,14 @@ export const TIMELINE = [
   {
     type: "CHECKPOINT",
     year: 2023,
-    title: "IT Basics Course",
+    title: "IT Foundations (Soft Skills & Workflow)",
     subtitle: "GlobalLogic (Apr–May 2023)",
+    details:
+      "Built core professional skills for succeeding in tech teams: communication, time management, intro to PM methods, QA basics, and hiring process insights.",
+    tags: ["Soft Skills", "PM intro", "QA overview", "Time management"],
     badge: "Course",
     icon: "🧩",
-    images: ["/timeline/GlobalLogic2023.png"], // ensure extension matches
+    images: ["/timeline/GlobalLogic2023.png"],
   },
   {
     type: "CHECKPOINT",

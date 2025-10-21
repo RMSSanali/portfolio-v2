@@ -111,9 +111,25 @@ export default function Timeline() {
                     </h3>
 
                     {/* details (optional) */}
-                    {item.details && (
-                      <p className="mt-1 text-sm text-white/70">{item.details}</p>
-                    )}
+                    {(item.details || item.description || (Array.isArray(item.tags) && item.tags.length > 0)) && (
+                        <>
+                          {(item.details || item.description) && (
+                            <p className="mt-1 text-sm text-white/70">
+                              {item.details || item.description}
+                            </p>
+                          )}
+
+                          {Array.isArray(item.tags) && item.tags.length > 0 && (
+                            <ul className="mt-2 flex flex-wrap gap-2 text-xs text-white/70">
+                              {item.tags.map((t) => (
+                                <li key={t} className="rounded-full border border-white/20 px-2 py-0.5">
+                                  {t}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </>
+                      )}
                   </div>
 
                   {/* RIGHT: image(s) */}
